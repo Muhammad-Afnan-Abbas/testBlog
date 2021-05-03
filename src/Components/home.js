@@ -50,7 +50,7 @@ class Home extends Component {
                 <div className="col-75">
                   <select id="country" name="tags">
                     <option value="Entertainment">Entertainment</option>
-                    <option value="news">News</option>
+                    <option value="newstv">News</option>
                     <option value="sports">Sports</option>
                     <option value="national">National</option>
                   </select>
