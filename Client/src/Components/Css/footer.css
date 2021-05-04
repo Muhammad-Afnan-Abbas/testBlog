@@ -1,0 +1,130 @@
+section {
+  padding: 30px 0;
+}
+section .section-title {
+  text-align: center;
+  color: black;
+  margin-bottom: 10px !important;
+  text-transform: uppercase;
+}
+@media (max-width: 767px) {
+  #footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+  }
+}
+.column {
+  float: left;
+  width: 33.33%;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#footer {
+  background: black !important;
+  padding: 20px;
+}
+#footer h5 {
+  padding-left: 10px;
+  border-left: 3px solid #EEEEEE;
+  padding-bottom: 6px;
+  margin-bottom: 0px;
+  color: #FFFFFF;
+    /* top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: pink;  */
+}
+#footer a {
+  color: #FFFFFF;
+  text-decoration: none !important;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+#footer ul.social li {
+  padding: 3px 0;
+}
+#footer ul.social li a i {
+  margin-right: 5px;
+  font-size: 25px;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+#footer ul.social li:hover a i {
+  font-size: 30px;
+  margin-top: -10px;
+}
+#footer ul.social li a,
+#footer ul.quick-links li a {
+  color: #FFFFFF;
+}
+#footer ul.social li a:hover {
+  color: #EEEEEE;
+}
+#footer ul.quick-links li {
+  padding: 3px 0;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+#footer ul.quick-links li:hover {
+  padding: 3px 0;
+  margin-left: 5px;
+  font-weight: 700;
+}
+#footer ul.quick-links li a i {
+  margin-right: 5px;
+}
+#footer ul.quick-links li:hover a i {
+  font-weight: 700;
+}
+.footColor {
+  /* background: linear-gradient(
+    to diaognal, 
+    #f25761 0%, 
+    #f25761 50%, 
+    #2F2F31 50%, 
+    #2F2F31 100%
+  ); */
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f25761+50,ff3019+51,ff3019+51,ff3019+60 */
+background: #ea192b; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ea192b 50%, #2F2F31 51%, #2F2F31 51%, #2F2F31 60%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ea192b 50%,#2F2F31 51%,#2F2F31 51%,#2F2F31 60%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ea192b 50%,#2F2F31 51%,#2F2F31 51%,#2F2F31 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea192b', endColorstr='#2F2F31',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+.text-white {
+  color: #EEEEEE;
+}
+
+.learn-more-filtermain {
+	display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  padding: 20px;
+}
+.learn-more-filter{
+	color: #4D4D4D;
+	font-size: 11px;
+	min-width: 50px;
+	padding: 4px;
+	text-align: center;
+	border: 1px solid #CCCCCC;
+	display: block;
+	margin: 5px;
+	text-decoration: none;
+  background-color: #2F2F31;
+}
+input[type="text"]
+{
+    background: transparent;
+    border: none;
+    color:white;
+}

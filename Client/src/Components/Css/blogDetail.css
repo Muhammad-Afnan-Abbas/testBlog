@@ -1,0 +1,38 @@
+.mainDiv {
+  margin-top: 20px;
+}
+
+.tags-css-new {
+  color: white;
+  font-size: 11px;
+  min-width: 50px;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #cccccc;
+  display: block;
+  margin: 5px;
+  text-decoration: none;
+  background-color: red;
+}
+.outer-tags-new {
+  position: absolute;
+  top: 20%;
+  left: 9%;
+  transform: translate(-50%, -50%);
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  padding: 20px;
+  color: white;
+}
+.social {
+  background-color: #ea192b;
+}
+.cen {
+  text-align: center;
+  color: white;
+}
+.iconss {
+  background-color: teal;
+  color:tomato
+}
