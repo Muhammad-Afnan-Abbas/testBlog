@@ -43,7 +43,7 @@ export default class NavbarBlog extends Component {
                     <i className="fas fa-home link-set" />
                     Contact Us
                 </Link>
-                <Link className="link-set" to="/create-blog">
+                <Link className="link-set" to="/create">
                     <i className="fas fa-home link-set" />
                     Create Blog
                 </Link>

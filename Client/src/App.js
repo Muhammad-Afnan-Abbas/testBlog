@@ -24,7 +24,7 @@ function App() {
           <Route path="/tag-archive" />
           <Route path="/aboutus"/>
           <Route path="/blog-detail" component={BlogDetail}/>
-          <Route path="/create-blog" component={CreateBlog} />
+          <Route path="/create" component={CreateBlog} />
           <Route path="/blogs/:id"/>
           <Route path="/contactus" component={ContactUS} />
           <Redirect from="/" exact to="/home" />
