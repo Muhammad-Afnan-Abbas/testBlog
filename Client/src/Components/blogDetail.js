@@ -1,11 +1,35 @@
 import React, { Component } from "react";
 import { BLOGS } from "./constants";
 import "./Css/blogDetail.css";
+
 export default class BlogDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cResults:[],
+    };
+  }
+
+  componentDidMount(){
+    fetch("http://localhost:3001/blog", {
+      "method": "GET",
+    })
+    .then(response => response.json())
+    .then(response => {
+      this.setState({
+        cResults: response
+      })
+      console.log("DataFetched", this.state.cResults);
+    })
+    .catch(err => { console.log(err); 
+    });
+
+  }
   render() {
+    const {cResults}  = this.state
     return (
       <div className="mainDiv">
-        {BLOGS.map((b, index) => {
+        {cResults.filter().map((b, index) => {
           return (
             <div>
               {index == 0 && (

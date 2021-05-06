@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const formSchema = {
   title: String,
   content: String,
-  file: String,
-}
+  file: Object,
+  results: Array,
+};
 
 const Form = mongoose.model("form", formSchema);
 

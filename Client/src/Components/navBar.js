@@ -5,11 +5,8 @@ import './Css/navbar.css';
 export default class NavbarBlog extends Component {
   render() {
     return (
-      <div className="fluid-container">
-      <div className="row">
-      <div className="col-12">
-        <Navbar className="NavBarMain" collapseOnSelect expand="lg" bg="dark" variant="dark">
-              <React.Fragment>
+        <Navbar className="NavBarMain" bg="dark" variant="dark" sticky="top">
+         <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto ContentNav">
                 <Link className="link-set" to="/home">
                     <i className="fas fa-home link-set" />
@@ -48,11 +45,8 @@ export default class NavbarBlog extends Component {
                     Create Blog
                 </Link>
                 </Nav>
-              </React.Fragment>
+              </Navbar.Collapse>
         </Navbar>
-        </div>
-        </div>
-      </div>
     );
   }
 }

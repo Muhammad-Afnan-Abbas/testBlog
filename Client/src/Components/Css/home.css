@@ -45,7 +45,7 @@
     left: 20%;
     transform: translate(-50%, -50%);
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 3px;
     padding: 20px;
     color: white;

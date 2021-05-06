@@ -65,21 +65,32 @@ class CreateBlog extends Component {
     const newForm = {
       title: this.state.title,
       content: this.state.content,
-      file: this.state.file
+      file: this.state.file,
+      results: this.state.results,
     }
     console.log(newForm)
     console.log(this.state.file)
     http.post('', newForm)
   }
-  onChangeHandler= (event) =>{
+
+  cancelblog = () => { 
     this.setState({
-      file: event.target.files[0],
-      loaded: 0,
-    })
+      title: '',
+      content: '',
+      results: [],
+      file: ''
+    });
+  }
+
+  onChangeHandler= (event) =>{
+    const file = event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(file)
+    reader.onload = () => this.setState({ file: reader.result })
   }
 
   render() {
-    const { title, content } = this.state;
+    const { results } = this.state;
     return (
       <>
         <div className="fluid-container section" id="section1">
@@ -118,7 +129,7 @@ class CreateBlog extends Component {
                   />
                 </div>
               </div>
-              {/* <div className="row">
+              <div className="row">
                 <div className="col-25">
                   <label for="tags">Tags</label>
                 </div>
@@ -155,23 +166,37 @@ class CreateBlog extends Component {
                     </ul>
                   );
                 })}
-              </div> */}
+              </div>
               <div className="row">
                 <div className="col-25">
                   <label for="subject">Upload Image</label>
                 </div>
                 <div className="col-75">
-                  <input onChange={event => {this.setState({
-                    file : URL.createObjectURL(event.target.files[0])
-                  })}} type="file" className="form-control" id="customFile" />
+                  <input onChange={(event) => this.onChangeHandler(event)} type="file" className="form-control" id="customFile" />
                 </div>
               </div>
               <div className="row">
+              {
+               this.state.file && (
+                 <img src = {this.state.file}></img>
+               ) 
+              }
+              </div>
+              <div className="row">
+              <div className="col-25">
+                </div>
                 <div className="col-75">
                   <input type="submit" onClick={(event) => this.handleClick(event)} value="Create" className="bgc" />
                 </div>
               </div>
             </form>
+            <div className="row">
+            <div className="col-25">
+                </div>
+                <div className="col-75">
+                  <input type="submit" onClick={() => this.cancelblog()} value="Clear" className="bgc" />
+                </div>
+              </div>
           </div>
         </div>
       </>
