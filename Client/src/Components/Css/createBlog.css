@@ -1,17 +1,22 @@
 #section1 {
-  height: 90%; 
-text-align:center; 
-  display:table;
-  width:100%;
+  height: 90%;
+  text-align: center;
+  display: table;
+  width: 100%;
 }
 
-#section1 h1 {display:table-cell; vertical-align:middle}
+#section1 h1 {
+  display: table-cell;
+  vertical-align: middle;
+}
 
 * {
   box-sizing: border-box;
 }
 
-input[type=text], select, textarea {
+input[type="text"],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -25,8 +30,8 @@ label {
   display: inline-block;
 }
 
-input[type=submit] {
-  background-color: #04AA6D;
+input[type="submit"] {
+  background-color: #04aa6d;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -35,7 +40,7 @@ input[type=submit] {
   float: right;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #45a049;
 }
 
@@ -66,7 +71,9 @@ input[type=submit]:hover {
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
     width: 100%;
     margin-top: 0;
   }
@@ -79,27 +86,33 @@ input[type=submit]:hover {
   display: flex;
 }
 .options-filter ul {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
 }
 .options-filter ul li a {
-	background: #2F2F31;
-    color: white !important;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2px 12px;
-    text-decoration: none !important;
-    font-size: 12px;
-    margin: 15px 10px 0 0;
+  background: #2f2f31;
+  color: white !important;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 12px;
+  text-decoration: none !important;
+  font-size: 12px;
+  margin: 15px 10px 0 0;
 }
 .options-filter ul li a i {
-	color: #707070 !important;
-	font-size: 10px;
+  color: #707070 !important;
+  font-size: 10px;
   cursor: pointer;
 }
 .container {
   background-color: white;
+}
+.style-inp {
+  padding: 0 50px !important;
+}
+.style-btn {
+  padding: 15px !important;
 }

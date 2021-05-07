@@ -26,8 +26,8 @@ function App() {
           <Route path="/create" component={CreateBlog} />
           <Route path="/blogs/:id" />
           <Route path="/contactus" component={ContactUS} />
-          {/* <Redirect from="/" exact to="/home" />
-          <Redirect to="/not-found" /> */}
+          <Redirect from="/" exact to="/home" />
+          <Redirect to="/not-found" />
         </Switch>
         <Footer />
       </BrowserRouter>

@@ -15,7 +15,7 @@
   background-color: red;
 }
 .outer-tags-new {
-  position: absolute;
+  /* position: absolute;
   top: 20%;
   left: 9%;
   transform: translate(-50%, -50%);
@@ -23,7 +23,19 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 3px;
   padding: 20px;
-  color: white;
+  color: white; */
+  height: 1.2em;
+    width: 20%;
+    left: 1.2%;
+    margin-top: -26.4em;
+    float: left;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans;
+    font-weight: bold;
+    position: absolute;
+    grid-template-columns: repeat(3, 1fr);
+    display: grid !important;
 }
 .social {
   background-color: #ea192b;
@@ -32,7 +44,95 @@
   text-align: center;
   color: white;
 }
+/* }
 .iconss {
   background-color: teal;
   color:tomato
+} */
+
+.fa {
+  padding: 10px;
+  /* font-size: 30px; */
+  /* width: 50px; */
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
 }
+
+.fa:hover {
+    opacity: 0.8;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-facebook:hover{
+  background: #305197;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+.fa-instagram:hover {
+  background: #0b5386;
+  color: white;
+}
+
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    padding: 30px;
+  }
+  .cursor-learn-more {
+    cursor: pointer;
+    color: #656565 !important;
+    text-decoration: none;
+  }
+  .brouch-breadcrums {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #656565;
+  }
+  .brouch-breadcrums i {
+    margin: 0 10px;
+    color: #656565;
+    text-decoration: none;
+  }
+  .mainRow{
+    border: 3px solid #888;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background: #fffff0;
+    padding: 20px 25px; 
+  }

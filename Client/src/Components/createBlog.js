@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import { TAGS } from "./constants";
 import { toastr } from "react-redux-toastr";
-import axios from 'axios';
 import "./Css/createBlog.css";
 import http from "../http-common";
 class CreateBlog extends Component {
@@ -11,9 +10,9 @@ class CreateBlog extends Component {
       sortList: [],
       results: [],
       value: "",
-      title:'',
-      content:'',
-      file: '',
+      title: "",
+      content: "",
+      file: "",
     };
   }
   handleOptions = (event) => {
@@ -53,41 +52,41 @@ class CreateBlog extends Component {
   //   axios.post('http://localhost/9000/create', newForm)
   // }
   handleChange(event) {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     this.setState({
-      hell :{...this.state.title},
-      [name]: value
-    })
+      hell: { ...this.state.title },
+      [name]: value,
+    });
   }
 
-  handleClick (event) {
+  handleClick(event) {
     event.preventDefault();
     const newForm = {
       title: this.state.title,
       content: this.state.content,
       file: this.state.file,
       results: this.state.results,
-    }
-    console.log(newForm)
-    console.log(this.state.file)
-    http.post('', newForm)
+    };
+    console.log(newForm);
+    console.log(this.state.file);
+    http.post("", newForm);
   }
 
-  cancelblog = () => { 
+  cancelblog = () => {
     this.setState({
-      title: '',
-      content: '',
+      title: "",
+      content: "",
       results: [],
-      file: ''
+      file: "",
     });
-  }
+  };
 
-  onChangeHandler= (event) =>{
-    const file = event.target.files[0]
+  onChangeHandler = (event) => {
+    const file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file)
-    reader.onload = () => this.setState({ file: reader.result })
-  }
+    reader.readAsDataURL(file);
+    reader.onload = () => this.setState({ file: reader.result });
+  };
 
   render() {
     const { results } = this.state;
@@ -100,10 +99,12 @@ class CreateBlog extends Component {
           <div className="container">
             <form method="POST" action="/create" enctype="multipart/form-data">
               <div className="row">
-                <div className="col-25">
-                  <label for="title">Title</label>
+                <div className="col-lg-3 col-md-5 col-sm-12">
+                  <label for="title">
+                    <strong>Post Title</strong>
+                  </label>
                 </div>
-                <div className="col-75">
+                <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
                   <input
                     type="text"
                     id="title"
@@ -115,11 +116,13 @@ class CreateBlog extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-25">
-                  <label for="lname">Post Content</label>
+                <div className="col-lg-3 col-md-5 col-sm-12">
+                  <label for="lname">
+                    <strong>Post Content</strong>
+                  </label>
                 </div>
-                <div className="col-75">
-                  <input
+                <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                  <textarea
                     type="text"
                     id="pcontent"
                     onChange={(event) => this.handleChange(event)}
@@ -130,10 +133,12 @@ class CreateBlog extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-25">
-                  <label for="tags">Tags</label>
+                <div className="col-lg-3 col-md-5 col-sm-12">
+                  <label for="tags">
+                    <strong>Tags</strong>
+                  </label>
                 </div>
-                <div className="col-75">
+                <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
                   <select
                     id="country"
                     name="tags"
@@ -168,35 +173,46 @@ class CreateBlog extends Component {
                 })}
               </div>
               <div className="row">
-                <div className="col-25">
-                  <label for="subject">Upload Image</label>
+                <div className="col-lg-3 col-md-5 col-sm-12">
+                  <label for="subject">
+                    <strong>Upload Image</strong>
+                  </label>
                 </div>
-                <div className="col-75">
-                  <input onChange={(event) => this.onChangeHandler(event)} type="file" className="form-control" id="customFile" />
+                <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                  <input
+                    onChange={(event) => this.onChangeHandler(event)}
+                    type="file"
+                    className="form-control"
+                    id="customFile"
+                  />
                 </div>
               </div>
               <div className="row">
-              {
-               this.state.file && (
-                 <img src = {this.state.file}></img>
-               ) 
-              }
+                {this.state.file && <img src={this.state.file}></img>}
               </div>
               <div className="row">
-              <div className="col-25">
-                </div>
-                <div className="col-75">
-                  <input type="submit" onClick={(event) => this.handleClick(event)} value="Create" className="bgc" />
+                <div className="col-lg-3 col-md-5 col-sm-12"></div>
+                <div className="col-lg-9 col-md-7 col-sm-12">
+                  <input
+                    type="submit"
+                    onClick={(event) => this.handleClick(event)}
+                    value="Create"
+                    className="bgc"
+                  />
                 </div>
               </div>
             </form>
             <div className="row">
-            <div className="col-25">
-                </div>
-                <div className="col-75">
-                  <input type="submit" onClick={() => this.cancelblog()} value="Clear" className="bgc" />
-                </div>
+              <div className="col-lg-3 col-md-5 col-sm-12"></div>
+              <div className="col-lg-9 col-md-7 col-sm-12 style-btn">
+                <input
+                  type="submit"
+                  onClick={() => this.cancelblog()}
+                  value="Clear"
+                  className="bgc"
+                />
               </div>
+            </div>
           </div>
         </div>
       </>
@@ -206,7 +222,7 @@ class CreateBlog extends Component {
 
 export default CreateBlog;
 
-// export default function CreateBlog() 
+// export default function CreateBlog()
 // {
 //   const [input, setInput] = useState({
 //     titlle: '',
