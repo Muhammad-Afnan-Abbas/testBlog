@@ -8,64 +8,46 @@ class ContactUS extends Component {
   render() {
     return (
       <>
-        <div class="header">
-          <h2>Blog Name</h2>
+        <div class="touch_section">
+        <div class="container">
+            <h1 class="touch_text">Let's Get In Touch!</h1>
         </div>
-        <div class="row">
-          <div class="leftcolumn">
-            <div class="card">
-              <h2>TITLE HEADING</h2>
-              <h5>Title description, Dec 7, 2017</h5>
-              <div class="fakeimg">
-                Image
-              </div>
-              <p>Some text..</p>
-              <p>
-                Sunt in culpa qui officia deserunt mollit anim id est laborum
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco.
-              </p>
+    </div>
+    <div className="lets_touch_main">
+        <div className="container cln">
+            <div className="row rContact">
+                <div className="col-md-6">
+                    <div className="input_main">
+                       <div className="container">
+                          <form action="/action_page.php">
+                            <div className="form-group">
+                              <input type="text" className="email-bt" placeholder="Name" name="Name"/>
+                            </div>
+                            <div className="form-group">
+                              <input type="text" className="email-bt" placeholder="Email" name="Email"/>
+                            </div>
+                            <form action="/action_page.php">
+                                <div className="form-group">
+                                  <textarea className="massage-bt" placeholder="Massage" rows="5" id="comment" name="text"></textarea>
+                                </div>
+                            </form>
+                          </form>
+                       </div> 
+                       <div className="send_btn">
+                        <button  type="button" className="main_bt">Send</button>
+                       </div>                   
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="col-12">
+                            <p className="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-              <h2>TITLE HEADING</h2>
-              <h5>Title description, Sep 2, 2017</h5>
-              <div class="fakeimg">
-                Image
-              </div>
-              <p>Some text..</p>
-              <p>
-                Sunt in culpa qui officia deserunt mollit anim id est laborum
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco.
-              </p>
-            </div>
-          </div>
-          <div class="rightcolumn">
-            <div class="card">
-              <h2>About Me</h2>
-              <div class="fakeimg">
-                Image
-              </div>
-              <p>
-                Some text about me in culpa qui officia deserunt mollit anim..
-              </p>
-            </div>
-            <div class="card">
-              <h3>Popular Post</h3>
-              <div class="fakeimg">Image</div>
-              <br />
-              <div class="fakeimg">Image</div>
-              <br />
-              <div class="fakeimg">Image</div>
-            </div>
-            <div class="card">
-              <h3>Follow Me</h3>
-              <p>Some text..</p>
-            </div>
-          </div>
         </div>
+    </div>
       </>
     );
   }

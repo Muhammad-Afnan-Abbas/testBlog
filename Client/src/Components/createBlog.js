@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component} from "react";
 import { TAGS } from "./constants";
 import { toastr } from "react-redux-toastr";
 import "./Css/createBlog.css";
@@ -122,7 +122,7 @@ class CreateBlog extends Component {
                   </label>
                 </div>
                 <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
-                  <textarea
+                  <input
                     type="text"
                     id="pcontent"
                     onChange={(event) => this.handleChange(event)}

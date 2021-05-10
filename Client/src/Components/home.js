@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BLOGS } from "./constants";
 import { Link } from "react-router-dom";
 import "./Css/home.css";
 import SearchBar from "./searchBar";
@@ -76,7 +75,7 @@ class Home extends Component {
                       query: { id: c.title },
                     }}
                   >
-                    <img className="longerImg" src={c.file} />
+                    <img className="longerImg" src={c.file} alt="blog"/>
                     <ul>
                       <li className="outer-tags">
                         {c.results.map((sort, index) => {

@@ -59,3 +59,81 @@ body {
   background: #ddd;
   margin-top: 20px;
 }
+
+/*new*/
+
+.touch_section {
+  width: 100%;
+  padding-top: 57px;
+  margin-bottom: 47px;
+  display: inline-block !important;
+}
+@media (min-width: 1200px){
+.container {
+    max-width: 1140px;
+}
+}
+.touch_text {
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  color: #050000;
+  font-size: 22pt;
+  font-weight: bold;
+}
+.lets_touch_main {
+  width: 100%;
+  float: left;
+  /* background-color: #072833; */
+  background-color: #2F2F31;
+  padding-top: 40px;
+  padding-bottom: 40PX;
+}
+.contact_main {
+  width: 100%;
+  float: left;
+  padding-top: 30px;
+}
+.contact_section_2 {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  padding-top: 40px;
+}
+.input_main {
+  width: 100%;
+  float: left;
+  background-color: #FFFFFF;
+  padding: 40px 20px;
+}
+button.main_bt {
+  background: #EA192B;
+  border: none;
+  color: white !important;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 22px;
+}
+.send_btn {
+  padding-left: 15px;
+}
+.lorem_text {
+    width: 100%;
+    float: left;
+    color: #FFFFFF;
+    font-size: 17px;
+    line-height: 35px;
+    padding-top: 80px;
+}
+.rContact{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  background-color: #2F2F31;
+  margin-left: -15px;
+}
+.cln {
+  background-color: #2F2F31 !important;
+}

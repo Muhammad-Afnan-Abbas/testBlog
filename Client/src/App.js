@@ -7,6 +7,7 @@ import ContactUS from "./Components/contactus";
 import CreateBlog from "./Components/createBlog";
 import BlogDetail from "./Components/blogDetail";
 import Home from "./Components/home";
+import Auth from "./Components/auth";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/blog-detail/:id" component={BlogDetail} />
           <Route path="/create" component={CreateBlog} />
           <Route path="/blogs/:id" />
+          <Route path="/auth" component={Auth}/>
           <Route path="/contactus" component={ContactUS} />
           <Redirect from="/" exact to="/home" />
           <Redirect to="/not-found" />

@@ -28,7 +28,7 @@ app.use("/", require("./routes/formRoute"));
 // app.use(bodyParser.json({
 //     limit: '50mb'
 //   }));
-
+app.use("/",require("./routes/userRoute"));
 app.use(
   express.urlencoded({
     limit: "50mb",
