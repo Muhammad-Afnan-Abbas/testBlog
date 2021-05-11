@@ -1,8 +1,9 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./Css/blogDetail.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { urlencoded } from "body-parser";
 
 // export default class BlogDetail extends Component {
 //   constructor(props) {
@@ -116,55 +117,132 @@ function BlogDetail() {
           .filter((item) => item._id === id)
           .map((b, index) => {
             return (
-              <div className="container">
-                <div className="row">
-                  <div className="col-ls-12 col-md-12 col-sm-12 brouch-breadcrums">
-                    <div>
+              <div className="container paddding">
+                <div className="row mx-0">
+                  <div className="col-md-8 animate box" id="fh5co-title-box">
+                    <div className="bcrumb">
                       <Link to="/home">
-                        <span className="cursor-learn-more">Home</span>
+                        <span className="cursor-learn-more clr">Home</span>
                       </Link>
                       <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
                       <strong>{b.title}</strong>
                     </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-8 col-md-9 col-sm-12">
-                    <img src={b.file} alt="blog's"></img>
-                    <ul key={index}>
-                      <li className="outer-tags-new">
+                    <img className="mimg" src={b.file}></img>
+                    <ul>
+                      <li className="outer-tags">
                         {b.results.map((sort, index) => {
                           return (
-                            <a key={index} className="tags-css-new">
+                            <a key={index} className="tags-css">
                               {sort}
                             </a>
                           );
                         })}
                       </li>
                     </ul>
-                  </div>
-                  <div className="col-lg-4 col-md-3 col-sm-12">
-                    <div className="mainRow">
-                      <strong>
-                        <p>About Author</p>
-                      </strong>
-                      <p>
-                        Afnan is a Software Engineer and a content writer. He
-                        writes articles and blogs just as his hobby and keeps
-                        himself updated of the current affais of the world. He
-                        had won a lot of international and national prizes and
-                        is a well known personality
-                      </p>
+                    <div></div>
+                    <div>
+                      <span>{b.date}</span>
+                      <h2>{b.title}</h2>
                     </div>
                   </div>
+                  <div
+                    className="col-md-3 animate-box"
+                    data-animate-effect="fadeInRight"
+                  >
+                    <div className="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">
+                      Most Popular
+                    </div>
+                    {result.map((m, index) => {
+                      return (
+                        <div className="row pb-3">
+                          <div className="col-5 align-self-center">
+                            <img
+                              src={m.file}
+                              alt="img"
+                              className="fh5co_most_trading"
+                            />
+                          </div>
+                          <div className="col-7 paddding">
+                            <div className="most_fh5co_treding_font">
+                              {" "}
+                              {m.title}
+                            </div>
+                            <div className="most_fh5co_treding_font_123">
+                              {" "}
+                              {m.date}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className="row">
-                  <div className="col-lg-12 col-md-12 col-sm-12">
-                    <h1>{b.title}</h1>
-                    <p>{b.content}</p>
-                    <p>{b.content}</p>
-                    <p>{b.content}</p>
-                    <p>{b.content}</p>
+                <div
+                  id="fh5co-single-content"
+                  className="container-fluid pb-4 pt-4 paddding"
+                >
+                  <div className="container paddding">
+                    <div className="row mx-0">
+                      <div
+                        className="col-md-8 animate-box"
+                        data-animate-effect="fadeInLeft"
+                      >
+                        <p>{b.content}</p>
+                        <p>{b.content}</p>
+                        <h3>{b.title}</h3>
+                        <p>{b.content}</p>
+                        <p>{b.content}</p>
+                      </div>
+                      <div
+                        className="col-md-3 animate-box"
+                        data-animate-effect="fadeInRight"
+                      >
+                        <div>
+                          <div className="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+                            Tags
+                          </div>
+                        </div>
+                        <div className="clearfix"></div>
+                        <div className="fh5co_tags_all">
+                          <a href="#" className="fh5co_tagg">
+                            Food
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Technology
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Sport
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Art
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Lifestyle
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Three
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Photography
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Lifestyle
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Art
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Education
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Social
+                          </a>
+                          <a href="#" className="fh5co_tagg">
+                            Three
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

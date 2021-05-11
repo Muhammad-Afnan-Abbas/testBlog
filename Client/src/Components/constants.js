@@ -24,6 +24,16 @@ export const TAGS = [
 		tagCategory: 'Events',
     value: 'Events'
 	},
+  {
+		id: 6,
+		tagCategory: 'Technology',
+    value: 'Technology'
+	},
+  {
+		id: 7,
+		tagCategory: 'Cricket',
+    value: 'Cricket'
+	},
 
 ]
 

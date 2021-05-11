@@ -9,78 +9,147 @@ import {
 } from "@material-ui/core";
 import { GoogleLogin } from "react-google-login";
 import { signin, signup } from "../actions/auth";
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }; 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 const Auth = () => {
   const state = null;
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if(isSignup){
-      dispatch(signup(formData, history))
-    }else {
-      dispatch(signin(formData,history))
-    }
-  };
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
-  };
-  const switchMode = () => {
-    setIsSignup((previsSignup) => !previsSignup);
-    //handleShowPassword(false);
-  };
-  const googleSuccess = (res) => {
-    console.log(res);
-  };
-  const googleFailure = () => {
-    console.log("sign in failed");
-  };
-  const handleShowPassword = () =>
-    setShowPassword((prevShowPassword) => !prevShowPassword);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const switchMode = () => {
+    setIsSignup((previsSignup) => !previsSignup);
+    //handleShowPassword(false);
+  };
+
+  const googleSuccess = (res) => {
+    console.log(res);
+  };
+
+  const googleFailure = () => {
+    console.log("sign in failed");
+  };
+
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+
   return (
     <div className="container">
       <div>
         <Avatar className="avatar"></Avatar>
         <h5>{isSignup ? "Sign up" : "Sign in"}</h5>
-        <form className="form" onClick={(e)=> handleSubmit(e)} method="POST" action="/user">
-          <Grid container spacing={20}>
+        <form
+          className="form"
+          onClick={(e) => handleSubmit(e)}
+          method="POST"
+          action="/user"
+        >
+          <div className="container">
             {isSignup && (
               <>
-                <input
-                  name="firstName"
-                  label="First Name"
-                  onChange={handleChange}
-                />
-                <input
-                  name="lastName"
-                  label="Last Name"
-                  onChange={handleChange}
-                />
+                <div className="row">
+                  <div className="col-lg-3 col-md-5 col-sm-12">
+                    <label for="title">
+                      <strong>First Name</strong>
+                    </label>
+                  </div>
+                  <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                    <input
+                      name="firstName"
+                      label="First Name"
+                      onChange={handleChange}
+                      placeholder="Enter First Name"
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-3 col-md-5 col-sm-12">
+                    <label for="title">
+                      <strong>Last Name</strong>
+                    </label>
+                  </div>
+                  <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                    <input
+                      name="lastName"
+                      label="Last Name"
+                      onChange={handleChange}
+                      placeholder="Enter Last Name"
+                    />
+                  </div>
+                </div>
               </>
             )}
-            <input name="email" label="Email" onChange={handleChange}></input>
-            <input
-              name="password"
-              label="Password"
-              onChange={handleChange}
-              type={showPassword ? "text" : "password"}
-            />
-            <i className="fa fa-plus-square" onClick={handleShowPassword} />
+            <div className="row">
+              <div className="col-lg-3 col-md-5 col-sm-12">
+                <label for="title">
+                  <strong>Email</strong>
+                </label>
+              </div>
+              <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                <input
+                  name="email"
+                  label="Email"
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-3 col-md-5 col-sm-12">
+                <label for="title">
+                  <strong>Password</strong>
+                </label>
+              </div>
+              <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                <input
+                  name="password"
+                  label="Password"
+                  onChange={handleChange}
+                  type={showPassword ? "text" : "password"}
+                />
+                <i className="fa fa-eye" onClick={handleShowPassword} />
+              </div>
+            </div>
             {isSignup && (
-              <input
-                name="confirmPassword"
-                label="Repeat Password"
-                handleChange={handleChange}
-                type="password"
-              ></input>
+              <div className="row">
+                <div className="col-lg-3 col-md-5 col-sm-12">
+                  <label for="title">
+                    <strong>Confirm Password</strong>
+                  </label>
+                </div>
+                <div className="col-lg-9 col-md-7 col-sm-12 style-inp">
+                  <input
+                    name="confirmPassword"
+                    label="Repeat Password"
+                    handleChange={handleChange}
+                    type="password"
+                  ></input>
+                </div>
+              </div>
             )}
-          </Grid>
+          </div>
           <GoogleLogin
             clientId="1045868687652-3r8bd4kt24aku1b95hpo8dg3hsits4ne.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -116,13 +185,13 @@ const Auth = () => {
         </button>
       </Grid> */}
         </form>
-        <Grid item>
+        <div className="btn-div">
           <button onClick={switchMode}>
             {isSignup
               ? "Already have an account? Sign In"
               : "Dont have an account? Sign Up"}
           </button>
-        </Grid>
+        </div>
       </div>
     </div>
   );

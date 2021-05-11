@@ -18,11 +18,15 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   const content = req.body.content;
   const file = req.body.file;
   const results = req.body.results;
+  // const date = new Date().toISOString().split('T')[0];
+  const dateObj = new Date()
+  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
   const newForm = new Form({
     title,
     content,
     file,
     results,
+    date,
   });
   const prom = await newForm.save();
   console.log("prom", prom);
