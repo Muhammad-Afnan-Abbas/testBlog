@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "font-awesome/css/font-awesome.min.css";
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -14,7 +15,7 @@ import { reducers } from './reducers';
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App></App>
   </Provider>,
   document.getElementById("root")
 );
