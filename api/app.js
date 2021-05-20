@@ -3,12 +3,11 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
+const usersRouter = require("./routes/users");
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 //connect to mongoose
 const url =
@@ -27,6 +26,9 @@ mongoose
   .catch((err) => {
     console.error(`Error connecting to the database. \n${err}`);
   });
+  app.use(passport.initialize());
+  require("./config/passport")(passport)
+  app.use("/", usersRouter);
 
 // app.use('/uploads',express.static('../uplaods'));
 app.use("/", require("./routes/formRoute"));

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getSecret, logoutUser } from "../../redux/actions/authActions";
+//import { getSecret, logoutUser } from "../../redux/actions/authActions";
 import API from "../../utils/API";
 
 const Logout = () => {

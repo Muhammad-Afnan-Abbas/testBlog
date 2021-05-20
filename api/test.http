@@ -1,7 +1,7 @@
-POST http://localhost:3001/signin
+POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-  "email":"afnan@gmail.com",
-  "password":"1234"
+  "email":"afnansoft@gmail.com",
+  "password":"12345678"
 }

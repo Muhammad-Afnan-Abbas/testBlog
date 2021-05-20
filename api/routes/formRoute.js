@@ -77,8 +77,9 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
     date,
   });
   const prom = await newForm.save();
-  window.alert("Login Successfull!");
-  console.log("prom", prom);
+  //window.alert("Login Successfull!");
+  //console.log("prom", prom);
+  res.json({ ok: true });
   return prom;
   // .then((res) => console.log("this is response",res))
   //     .catch(err => console.log("Error",err));
@@ -104,6 +105,7 @@ router.route("/contactUs").post(async (req, res, next) => {
   });
   sendToken(newContactForm, 201, req, res);
   const prom = await newContactForm.save();
+  res.json({ ok: true });
   console.log("prom", prom);
   return prom;
 });
@@ -129,6 +131,7 @@ router.route("/signup").post(async (req, res) => {
     //sendToken(signUpForm, 201, req, res);
   const prom = await signUpForm.save();
   console.log("prom", prom);
+  res.json({ ok: true });
   console.log("User registered")
   return prom;
 });

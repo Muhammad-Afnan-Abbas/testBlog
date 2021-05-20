@@ -5,8 +5,9 @@ import * as ReactBootStrap from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { urlencoded } from "body-parser";
 import { TAGS } from "../contants/constants";
-
-
+import PropTypes from 'prop-types';
+import { connect, useSelector } from 'react-redux';
+import authActions from '../redux/actions/authActions'
 
 function HomeTest() {
   const [cresult, setResult] = useState([]);
@@ -16,6 +17,7 @@ function HomeTest() {
   const [selectedValue, setSelectedValue]= useState("1")
   const [sortedValue, setSortedValue]= useState("")
   const [searchF, setSearchF]= useState("")
+  const user = useSelector(state => state.auth)
   const indexOfLastTodo = currentPage * blogsPerPage;
     const indexOfFirstTodo = indexOfLastTodo - blogsPerPage;
     const currentBlogs = cresult.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -307,6 +309,7 @@ function HomeTest() {
                                     {" "}
                                     {c.date}
                                   </div>
+                                  {user.name.split(' ')}
                                 </div>
                               </div>
                             </Link>
@@ -425,6 +428,7 @@ function HomeTest() {
                               <a>Read more</a>
                             </span>
                           </Link>
+                          <h1>{user.name}</h1>
                         </div>
                       </div>
                     </div>
@@ -486,5 +490,10 @@ function HomeTest() {
 
   );
 }
+
+// const mapStateToProps = state => ({
+//   auth: state.auth
+// });
+
 
 export default HomeTest;

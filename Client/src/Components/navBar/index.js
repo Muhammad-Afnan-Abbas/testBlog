@@ -27,6 +27,8 @@ class NavbarBlog extends Component {
   
   render() {
     const user = null;
+    const { loggedOn } = this.props;
+    console.log("Hell", loggedOn)
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     return (
       <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
@@ -50,17 +52,19 @@ class NavbarBlog extends Component {
               Create Blog
             </Link>
             <Search></Search>
-              <Link className="link-set" to="/signup">
+            {!isAuthenticated && 
+              <Link className="link-set" to="/register">
                 <i className="fa fa-user-plus link-set" />
                 SignUp
               </Link> 
-                <Link className="link-set"  onClick={(e) => this.logoutUser()}>
-              <i class="fa fa-sign-out link-set" aria-hidden="true"></i>
-                Logout 
-              </Link>
-              <Link className="link-set" to="/signin">
+            }
+              <Link className="link-set" to="/login">
                 <i class="fa fa-sign-in link-set" aria-hidden="true"></i>
                 Login
+              </Link>
+                <Link className="link-set" to="/dashboard" >
+              <i class="fa fa-sign-out link-set" aria-hidden="true"></i>
+                Dashboard 
               </Link>
               
           </Nav>
@@ -70,7 +74,7 @@ class NavbarBlog extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
 	return {
 		loggedOn: state.loggedOn
 	};
