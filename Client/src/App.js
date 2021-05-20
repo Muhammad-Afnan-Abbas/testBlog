@@ -11,7 +11,7 @@ import Home from "./Components/home/index";
 import Logout from "./Components/logout/logout";
 import ProtectedRoute from "./Components/protectedRoutes/protectedRoutes";
 import PrivateRoute from './Components/private-route/PrivateRoute';
-import HomeTest from "./Components/home/homeTest";
+import HomeTest from "./Components/home/home";
 import store from './Components/redux/store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
@@ -42,14 +42,14 @@ function App() {
         <NavbarBlog />
         <Switch>
           <Route exact path="/products"></Route>
-          <Route path="/home" component={Home} />
+          {/* <Route path="/home" component={Home} /> */}
           <Route path="/technology" component={Home} />
           <Route path="/lifestyle" />
           <Route path="/food" />
           <Route path="/features" />
           <Route path="/tag-archive" />
           <Route path="/aboutus" />
-          <Route path="/homet" component={HomeTest} />
+          <Route path="/home" component={HomeTest} />
           <Route path="/blog-detail/:id" component={BlogDetail} />
           {/* <Route path="/create" component={CreateBlog} /> */}
           <Route path="/blogs/:id" />

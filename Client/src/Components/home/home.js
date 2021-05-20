@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import "./blogDetail.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { urlencoded } from "body-parser";
@@ -157,7 +156,13 @@ function HomeTest() {
   //   setCurrentPage(Number(event.target.id));
   // }
   const truncate = (str) => {
+    if(str.length > 150)
+    {
     return str.length > 150 ? str.substring(0, 98) + "..." : str;
+    }
+    else {
+      return str
+    }
   };
   const handleSelect = (key) => {
     setSelectedValue(key);
@@ -309,7 +314,6 @@ function HomeTest() {
                                     {" "}
                                     {c.date}
                                   </div>
-                                  {user.name.split(' ')}
                                 </div>
                               </div>
                             </Link>
@@ -415,9 +419,11 @@ function HomeTest() {
                       <div className="col-md-7 animate-box">
                         <a className="fh5co_magna py-2"> {m.title}</a>{" "}
                         <a className="fh5co_mini_time py-3 dblck"> {m.date}</a>
+                        <p className="fh5co_mini_time py-3 dblck"> {m.username}</p>
                         <div className="fh5co_consectetur">
                           {" "}
                           {truncate(m.content)}
+                          {truncate(m.content.length >98) && 
                           <Link
                             to={{
                               pathname: `/blog-detail/${m._id}`,
@@ -428,7 +434,7 @@ function HomeTest() {
                               <a>Read more</a>
                             </span>
                           </Link>
-                          <h1>{user.name}</h1>
+                          }
                         </div>
                       </div>
                     </div>
@@ -477,6 +483,10 @@ function HomeTest() {
                         <div className="most_fh5co_treding_font_123">
                           {" "}
                           {c.date}
+                        </div>
+                        <div className="most_fh5co_treding_font_123">
+                          {" "}
+                          <p>Author: {c.username}</p>
                         </div>
                       </div>
                     </div>

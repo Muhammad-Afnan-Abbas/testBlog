@@ -6,6 +6,7 @@ const formSchema = {
   file: Object,
   results: Array,
   date: String,
+  username: String
 };
 
 const Form = mongoose.model("form", formSchema);

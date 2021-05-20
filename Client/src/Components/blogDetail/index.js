@@ -5,12 +5,15 @@ import * as ReactBootStrap from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { urlencoded } from "body-parser";
 import { TAGS } from "../contants/constants";
+import { useSelector } from "react-redux";
+import auth from '../redux/reducers/index'
 
 function BlogDetail() {
   const [result, setResult] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
-
+  const user = useSelector(state => state.auth)
+  console.log("User", user)
   useEffect(() => {
     fetchData();
   }, []);
@@ -60,6 +63,7 @@ function BlogDetail() {
                     <div></div>
                     <div>
                       <span>{b.date}</span>
+                      <p>Author of the Blog: {b.username}</p>
                       <h2>{b.title}</h2>
                       <p>{b.content}</p>
                     </div>

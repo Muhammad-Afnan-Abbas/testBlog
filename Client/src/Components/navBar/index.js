@@ -1,35 +1,30 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import API from "../../utils/API";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
+import { logoutUser } from "../redux/actions/authActions";
 import "./navbar.css";
 import Search from "./search/index";
 class NavbarBlog extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      //isLoggedIn: false
-    };
-    console.log(this.props.loggedOn)
+    this.state = {};
   }
-  logoutUser = async () => {
-    try{
-      const res = await API.get('/logout');
-      console.log(res);
-      localStorage.removeItem("user")
-      localStorage.clear()
-    }
-    catch (err){
-      console.log(err.response);
-    }
-  }
-  
+
+  onLogoutClick = (e) => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
+
   render() {
-    const user = null;
+    //const user = null;
     const { loggedOn } = this.props;
-    console.log("Hell", loggedOn)
-    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    console.log("Hell", loggedOn);
+    const isAuthenticated = this.props.auth;
+    const user = this.props.auth;
+    console.log("auth", isAuthenticated);
     return (
       <Navbar bg="dark" expand="lg" variant="dark" sticky="top">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -47,26 +42,45 @@ class NavbarBlog extends Component {
               <i className="fas fa fa-address-book link-set" />
               Contact Us
             </Link>
-            <Link className="link-set" to="/create">
-              <i className="fa fa-plus-square link-set" />
-              Create Blog
-            </Link>
+            {isAuthenticated.isAuthenticated && (
+              <Link className="link-set" to="/create">
+                <i className="fa fa-plus-square link-set" />
+                Create Blog
+              </Link>
+            )}
             <Search></Search>
-            {!isAuthenticated && 
+            {!isAuthenticated.isAuthenticated && (
               <Link className="link-set" to="/register">
                 <i className="fa fa-user-plus link-set" />
                 SignUp
-              </Link> 
-            }
+              </Link>
+            )}
+            {!isAuthenticated.isAuthenticated && (
               <Link className="link-set" to="/login">
                 <i class="fa fa-sign-in link-set" aria-hidden="true"></i>
                 Login
               </Link>
-                <Link className="link-set" to="/dashboard" >
-              <i class="fa fa-sign-out link-set" aria-hidden="true"></i>
-                Dashboard 
-              </Link>
-              
+            )}
+            {isAuthenticated.isAuthenticated && (
+              <>
+                <Link
+                  className="link-set"
+                  to="/login"
+                  onClick={this.onLogoutClick}
+                >
+                  <i class="fa fa-sign-out link-set" aria-hidden="true"></i>
+                  Logout
+                </Link>
+                <div className="link-set">
+                  <img
+                    src="/images/img_avatar.png"
+                    alt="Avatar"
+                    class="avatar"
+                  ></img>
+                </div>
+                <div className="link-set">{user.user.name}</div>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -74,9 +88,13 @@ class NavbarBlog extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		loggedOn: state.loggedOn
-	};
+NavbarBlog.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
-export default connect(mapStateToProps)(NavbarBlog);
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(NavbarBlog);

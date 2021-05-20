@@ -62,11 +62,13 @@ const sendToken = (user, statusCode, req, res,) => {
 };
 
 router.route("/create").post(upload.single("file"), async (req, res, next) => {
-  console.log(req.body.title);
+  console.log(req.body.uId);
   const title = req.body.title;
   const content = req.body.content;
   const file = req.body.file;
   const results = req.body.results;
+  const username = req.body.username;
+  console.log("IDD",username)
   const dateObj = new Date()
   const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
   const newForm = new Form({
@@ -75,6 +77,7 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
     file,
     results,
     date,
+    username,
   });
   const prom = await newForm.save();
   //window.alert("Login Successfull!");

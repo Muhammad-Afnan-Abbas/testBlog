@@ -3,6 +3,8 @@ import { TAGS } from "../contants/constants";
 import { toastr } from "react-redux-toastr";
 import "./createBlog.css";
 import http from "../../http-common";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 class CreateBlog extends Component {
   constructor(props) {
     super(props);
@@ -65,14 +67,17 @@ class CreateBlog extends Component {
 
   handleClick(event) {
     event.preventDefault();
+    const { user } = this.props.auth;
     const newForm = {
       title: this.state.title,
       content: this.state.content,
       file: this.state.file,
       results: this.state.results,
+      username: user.name
     };
     console.log(newForm);
     console.log(this.state.file);
+    console.log("logged in is",user.id)
     http.post("", newForm);
     this.setState({
       title: "",
@@ -80,7 +85,7 @@ class CreateBlog extends Component {
       results: [],
       file: "",
     });
-    this.props.history.push("/homet");
+    this.props.history.push("/home");
   }
 
   onChangeHandler = (event) => {
@@ -113,6 +118,7 @@ class CreateBlog extends Component {
                     onChange={(event) => this.handleTitle(event)}
                     name="title"
                     placeholder="Enter Title"
+                    required
                   />
                 </div>
               </div>
@@ -129,6 +135,7 @@ class CreateBlog extends Component {
                     onChange={(event) => this.handleContent(event)}
                     name="content"
                     placeholder="Write or paste Content"
+                    required
                   />
                 </div>
               </div>
@@ -184,6 +191,7 @@ class CreateBlog extends Component {
                     type="file"
                     className="form-control"
                     id="customFile"
+                    required
                   />
                 </div>
               </div>
@@ -213,9 +221,16 @@ class CreateBlog extends Component {
   }
 }
 
+CreateBlog.propTypes = {
+  auth: PropTypes.object.isRequired
+};
 
-export default CreateBlog;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
+// export default (connect(mapStateToProps))(CreateBlog);
+export default connect(mapStateToProps)(CreateBlog);
 // export default function CreateBlog()
 // {
 //   const [input, setInput] = useState({
