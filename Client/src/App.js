@@ -19,6 +19,8 @@ import { setCurrentUser, logoutUser } from './Components/redux/actions/authActio
 import Register from "./Components/Auth/Register";
 import Login from "./Components/Auth/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import EditBlog from "./Components/Auth/editProfile";
+import AllProducts from "./Components/Dashboard/products/allProducts";
 
 function App() {
   if (localStorage.jwtToken) {
@@ -59,6 +61,8 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/create" component={CreateBlog} />
+            <PrivateRoute exact path="/edit" component={EditBlog} />
+            <PrivateRoute exact path="/allp" component={AllProducts} />
           </Switch>
           {/* <ProtectedRoute exact path="/create" component={CreateBlog} ></ProtectedRoute> */}
           {/* <Route path="/logout" component={Logout} /> */}

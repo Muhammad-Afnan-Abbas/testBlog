@@ -73,7 +73,7 @@ class CreateBlog extends Component {
       content: this.state.content,
       file: this.state.file,
       results: this.state.results,
-      username: user.name
+      username: user.id
     };
     console.log(newForm);
     console.log(this.state.file);

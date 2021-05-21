@@ -90,6 +90,43 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   // console.log(newForm)
 });
 
+
+router.route("/edit").put(upload.single("file"), async (req, res) => {
+  ////console.log(req.body, req.files);return false;
+  const catagory = await Catagory.findById(req.body.username);
+  if (!catagory) return res.status(400).send('Invalid caragory.');
+
+  const title = req.body.title;
+  const content = req.body.content;
+  const file = req.body.file;
+  const results = req.body.results;
+  const username = req.body.username;
+  console.log("IDD",username)
+  const dateObj = new Date()
+  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
+  const newForm = await Form.findByIdAndUpdate({
+    title,
+    content,
+    file,
+    results,
+    date,
+    username,
+  });
+  const prom = await newForm.save();
+  //window.alert("Login Successfull!");
+  //console.log("prom", prom);
+  res.json({ ok: true });
+  return prom;
+  //res.send(product);
+});
+
+router.get('/seller/:id', async (req, res) => {
+  const products = await Form.find({username : req.params.id})
+    .select('-__v')
+    .sort('title');
+  res.send(products);
+});
+
 router.route("/contactUs").post(async (req, res, next) => {
   console.log(req.body.name);
   const name = req.body.name;
@@ -146,7 +183,7 @@ router.route("/blog").get(async (request, response) => {
 
   try {
     response.send(forms);
-    console.log("this is response of get", forms);
+    //console.log("this is response of get", forms);
   } catch (error) {
     response.status(500).send(error);
   }

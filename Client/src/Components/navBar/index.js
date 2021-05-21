@@ -78,7 +78,9 @@ class NavbarBlog extends Component {
                     class="avatar"
                   ></img>
                 </div>
-                <div className="link-set">{user.user.name}</div>
+                <Link to="/dashboard" className="link-set">
+                <div>{user.user.name}</div>
+                </Link>
               </>
             )}
           </Nav>

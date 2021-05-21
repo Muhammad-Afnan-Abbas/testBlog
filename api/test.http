@@ -1,7 +1,11 @@
-POST http://localhost:3001/login
+GET http://localhost:3001/seller/60a7df10fd095335a496109b
 Content-Type: application/json
 
+# {
+#   "email":"afnansoft@gmail.com",
+#   "password":"12345678"
+# }
+
 {
-  "email":"afnansoft@gmail.com",
-  "password":"12345678"
+  "username":"60a7df10fd095335a496109b"
 }
