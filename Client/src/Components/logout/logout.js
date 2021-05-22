@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import API from "../../utils/API";
 
 const Logout = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const logoutUser = async () => {
     try{
       const res = await API.get('/logout');

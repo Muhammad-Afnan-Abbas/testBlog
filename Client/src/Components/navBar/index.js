@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import API from "../../utils/API";
 import { connect } from "react-redux";
 import { logoutUser } from "../redux/actions/authActions";
 import "./navbar.css";
@@ -79,7 +78,7 @@ class NavbarBlog extends Component {
                   ></img>
                 </div>
                 <Link to="/dashboard" className="link-set">
-                <div>{user.user.name}</div>
+                  <div>{user.user.name}</div>
                 </Link>
               </>
             )}

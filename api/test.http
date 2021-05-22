@@ -1,4 +1,4 @@
-GET http://localhost:3001/seller/60a7df10fd095335a496109b
+GET  http://localhost:3001/blog?60a93ab554b3111fb0e9e1d7
 Content-Type: application/json
 
 # {
@@ -6,6 +6,6 @@ Content-Type: application/json
 #   "password":"12345678"
 # }
 
-{
-  "username":"60a7df10fd095335a496109b"
-}
+# {
+#   "username":"60a7df10fd095335a496109b"
+# }

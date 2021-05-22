@@ -7,13 +7,14 @@ const router = express.Router();
 const Form = require("../models/formModel");
 const ContactForm = require("../models/contactModel");
 const signedUpUser = require("../models/SignUpModel");
-var LocalStorage = require('node-localstorage').LocalStorage
-localStorage = new LocalStorage('./scratch');
+var LocalStorage = require("node-localstorage").LocalStorage;
+localStorage = new LocalStorage("./scratch");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "BD3018B993F0EF0CE6525A1271F25CCF9B734448806B5A1B39EA65199BA351BC";
-const JWT_EXPIRES = "14d"
-const JWT_EXPIRATION_NUM = 14*1000*60*60*24
-NODE_ENV="dev"
+const JWT_SECRET =
+  "BD3018B993F0EF0CE6525A1271F25CCF9B734448806B5A1B39EA65199BA351BC";
+const JWT_EXPIRES = "14d";
+const JWT_EXPIRATION_NUM = 14 * 1000 * 60 * 60 * 24;
+NODE_ENV = "dev";
 
 app.use(cors());
 var upload = multer({ storage: storage });
@@ -27,7 +28,6 @@ var storage = multer.diskStorage({
 const encryptPw = async (password) => {
   return await bcrypt.hash(password, 12);
 };
-
 
 const decryptJwt = async (token) => {
   const jwtVerify = promisify(jwt.verify);
@@ -43,15 +43,15 @@ const signJwt = (id) => {
 };
 
 // set jwt options and send jwt as a cookie
-const sendToken = (user, statusCode, req, res,) => {
+const sendToken = (user, statusCode, req, res) => {
   const token = signJwt(user._id);
   const options = {
     expires: new Date(Date.now() + JWT_EXPIRATION_NUM),
     secure: NODE_ENV === "prodution" ? true : false,
     httpOnly: NODE_ENV === "production" ? true : false,
   };
-  localStorage.setItem("user", token)
-  console.log(localStorage.getItem("user"))
+  localStorage.setItem("user", token);
+  console.log(localStorage.getItem("user"));
   res.cookie("jwt", token, options);
   user.password = undefined;
   res.status(statusCode).json({
@@ -68,9 +68,13 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   const file = req.body.file;
   const results = req.body.results;
   const username = req.body.username;
-  console.log("IDD",username)
-  const dateObj = new Date()
-  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
+  console.log("IDD", username);
+  const dateObj = new Date();
+  const date = dateObj.toLocaleString("default", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
   const newForm = new Form({
     title,
     content,
@@ -89,21 +93,37 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   //next();
   // console.log(newForm)
 });
-
+router.put("/update/:id", async (req, res) => {
+  console.log(req.body);
+  const blog = await Form.findById(
+    req.params.id,
+    {
+      title: req.body.title,
+      content: req.body.content,
+      file: req.body.file,
+    },
+    { new: true }
+  );
+  res.send(blog);
+});
 
 router.route("/edit").put(upload.single("file"), async (req, res) => {
   ////console.log(req.body, req.files);return false;
   const catagory = await Catagory.findById(req.body.username);
-  if (!catagory) return res.status(400).send('Invalid caragory.');
+  if (!catagory) return res.status(400).send("Invalid caragory.");
 
   const title = req.body.title;
   const content = req.body.content;
   const file = req.body.file;
   const results = req.body.results;
   const username = req.body.username;
-  console.log("IDD",username)
-  const dateObj = new Date()
-  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
+  console.log("IDD", username);
+  const dateObj = new Date();
+  const date = dateObj.toLocaleString("default", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
   const newForm = await Form.findByIdAndUpdate({
     title,
     content,
@@ -120,10 +140,18 @@ router.route("/edit").put(upload.single("file"), async (req, res) => {
   //res.send(product);
 });
 
-router.get('/seller/:id', async (req, res) => {
-  const products = await Form.find({username : req.params.id})
-    .select('-__v')
-    .sort('title');
+router.delete("/blog/:id", async (req, res) => {
+  console.log("hahaha id", req.params.id);
+  const newform = await Form.findByIdAndRemove(req.params.id);
+  if (!newform)
+    return res.status(404).send("The product with the given ID was not found.");
+  res.send(newform);
+});
+
+router.get("/seller/:id", async (req, res) => {
+  const products = await Form.find({ username: req.params.id })
+    .select("-__v")
+    .sort("title");
   res.send(products);
 });
 
@@ -133,8 +161,12 @@ router.route("/contactUs").post(async (req, res, next) => {
   const email = req.body.email;
   const message = req.body.message;
   // const date = new Date().toISOString().split('T')[0];
-  const dateObj = new Date()
-  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
+  const dateObj = new Date();
+  const date = dateObj.toLocaleString("default", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
   //const userId = req.body.name
   const newContactForm = new ContactForm({
     name,
@@ -150,7 +182,6 @@ router.route("/contactUs").post(async (req, res, next) => {
   return prom;
 });
 
-
 router.route("/signup").post(async (req, res) => {
   console.log(req.body.name);
   const name = req.body.name;
@@ -159,24 +190,26 @@ router.route("/signup").post(async (req, res) => {
   const cpassword = req.body.cpassword;
   const pw = await encryptPw(password);
   const pwc = await encryptPw(cpassword);
-  const dateObj = new Date()
-  const date = dateObj.toLocaleString("default", { month: "short" , day:"2-digit", year:"numeric" })
-    const signUpForm = new signedUpUser({
-      name,
-      email,
-      password :pw,
-      cpassword :pwc,
-      date,
-    });
-    //sendToken(signUpForm, 201, req, res);
+  const dateObj = new Date();
+  const date = dateObj.toLocaleString("default", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+  const signUpForm = new signedUpUser({
+    name,
+    email,
+    password: pw,
+    cpassword: pwc,
+    date,
+  });
+  //sendToken(signUpForm, 201, req, res);
   const prom = await signUpForm.save();
   console.log("prom", prom);
   res.json({ ok: true });
-  console.log("User registered")
+  console.log("User registered");
   return prom;
 });
-
-
 
 router.route("/blog").get(async (request, response) => {
   const forms = await Form.find();
@@ -190,22 +223,21 @@ router.route("/blog").get(async (request, response) => {
 });
 
 router.route("/signin").post(async (req, res) => {
-    const { email, password } = req.body;
-    console.log("Login haha", req.body)
-    try {
-      const user = await signedUpUser.findOne({ email }).select("password");
-      if (!user) return res.status(400).json({ message: "Login Failed" });
-      const compared = await bcrypt.compare(password, user.password);
-      console.log(compared)
-      compared
-        ? sendToken(user, 200, req, res, user)
-        : res.status(400).json({ message: "Login Failed" });
-    } catch (err) {
-      console.log(err);
-      res.status(400).json({ message: err.message });
-    }
+  const { email, password } = req.body;
+  console.log("Login haha", req.body);
+  try {
+    const user = await signedUpUser.findOne({ email }).select("password");
+    if (!user) return res.status(400).json({ message: "Login Failed" });
+    const compared = await bcrypt.compare(password, user.password);
+    console.log(compared);
+    compared
+      ? sendToken(user, 200, req, res, user)
+      : res.status(400).json({ message: "Login Failed" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
   }
-)
+});
 
 router.route("/logout").get(async (req, res) => {
   const options = {
@@ -215,6 +247,6 @@ router.route("/logout").get(async (req, res) => {
   };
   res.cookie("jwt", "expiredtoken", options);
   res.status(200).json({ status: "success" });
-})
+});
 
 module.exports = router;

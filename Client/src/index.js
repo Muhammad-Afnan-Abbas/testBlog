@@ -8,9 +8,6 @@ import "bootstrap/dist/js/bootstrap.js";
 import "font-awesome/css/font-awesome.min.css";
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { reducers } from '../src/Components/redux/reducers';
 import store from "./Components/redux/store";
 
 ReactDOM.render(
