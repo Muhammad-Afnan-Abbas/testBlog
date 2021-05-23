@@ -6,18 +6,19 @@ import { useSelector } from "react-redux";
 
 function HomeTest() {
   const [cresult, setResult] = useState([]);
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [blogsPerPage, setBlogsPerPage] = useState(8);
   const [selectedValue, setSelectedValue] = useState("1");
   const [sortedValue, setSortedValue] = useState("");
   const [searchF, setSearchF] = useState("");
-  const user = useSelector((state) => state.auth);
+  //const user = useSelector((state) => state.auth);
   const indexOfLastTodo = currentPage * blogsPerPage;
   const indexOfFirstTodo = indexOfLastTodo - blogsPerPage;
   const currentBlogs = cresult.slice(indexOfFirstTodo, indexOfLastTodo);
   const filterBlogs = cresult.filter((blog) =>
-    blog.title.toLowerCase().includes(searchF.toLowerCase())
+    blog
   );
   const dateObj = new Date();
   const datee = dateObj.toLocaleString("default", {
@@ -144,7 +145,8 @@ function HomeTest() {
 
   useEffect(() => {
     fetchData();
-  }, [cresult]);
+    userFetch();
+  }, [cresult][user]);
 
   // const handleClick = (event) => {
   //   setCurrentPage(Number(event.target.id));
@@ -175,6 +177,18 @@ function HomeTest() {
       .then((data) => {
         setResult(data);
         setLoading(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const userFetch =(data) => {
+    fetch(`http://localhost:3001/user/${data}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data);
       })
       .catch((error) => {
         console.log(error);
@@ -412,7 +426,7 @@ function HomeTest() {
                       <a className="fh5co_mini_time py-3 dblck"> {m.date}</a>
                       <p className="fh5co_mini_time py-3 dblck">
                         {" "}
-                        {m.username}
+                        {userFetch(m.username)}
                       </p>
                       <div className="fh5co_consectetur">
                         {" "}

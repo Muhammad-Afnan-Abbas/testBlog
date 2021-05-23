@@ -12,3 +12,13 @@ input {
 	box-sizing: border-box;
 	outline: none;
 }
+.results-container{
+	background-color: aliceblue;
+	color: black !important;
+}
+.result-items{
+	color: black;
+}
+.image-username{
+	color: black;
+}

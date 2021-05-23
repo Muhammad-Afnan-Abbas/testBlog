@@ -6,7 +6,7 @@ class Search extends  React.Component {
 		super( props );
 		this.state = {
 			query: '',
-      results: {},
+      results: [],
       loading: false,
       message: '',
 		};
@@ -14,6 +14,7 @@ class Search extends  React.Component {
 	}
   handleOnInputChange = (event) => {
     const query = event.target.value;
+    console.log("qu", query)
     if ( ! query ) {
       this.setState({ query, results: {}, message: '' } );
     } else {
@@ -25,24 +26,22 @@ class Search extends  React.Component {
   fetchSearchResults = (updatedPageNo = '', query ) => {
     //const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
     // By default the limit of results is 20
-    const searchUrl = `http://localhost:3001/blog/search?${query}`;
+    const searchUrl = `http://localhost:3001/search?q=${query}`;
     if (this.cancel) {
       // Cancel the previous request before making a new request
       this.cancel.cancel();
     }
     // Create a new CancelToken
     this.cancel = axios.CancelToken.source();
-    axios
-      .get(searchUrl, {
+    axios.get(searchUrl, {
         cancelToken: this.cancel.token,
-      })
-      .then((res) => {
-        const resultNotFoundMsg = !res.data.hits.length
-          ? 'There are no more search results. Please try a new search.'
-          : '';
+      }).then((res) => {
+        console.log(res) 
+        //res.json();
+        //const resultNotFoundMsg = !res.data.hits.length
         this.setState({
-          results: res.data.hits,
-          message: resultNotFoundMsg,
+          results: res.data,
+          //message: resultNotFoundMsg,
           loading: false,
         });
       })
@@ -54,25 +53,53 @@ class Search extends  React.Component {
           });
         }
       });
+    // fetch(searchUrl, {
+    //     method: "GET",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //     }
+    // }).then(response => {response.json()
+    // console.log(("object,", response))})
+    //   .then(obj => {
+    //      console.log('Title of the first post: ' + obj[0].title.rendered);
+    //      console.log('Content of the first post: ' + obj[0].content.rendered);
+    // });
   };
-  renderSearchResults = () => {
+  // resultHanlde = () => {
+  //   resultss = fetch(`http://localhost/search?q=${query}`, {
+  //     method: "GET",})
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       this.setState({
+  //         results : data
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  // }
+   renderSearchResults = () => {
     const {results} = this.state;
-    if (Object.keys(results).length && results.length) {
+    if (this.state.results.length > 0) {
+      console.log("hahahha",this.state.results[0].title);
+    }
+    //const resultnew = JSON.parse(this.state.results)
+    console.log("Query Results",results)
       return (
         <div className="results-container">
-          {results.map((result) => {
-            return (
-              <a key={result.id} href={result.previewURL} className="result-items">
-                <h6 className="image-username">{result.user}</h6>
+              <div>
+              <h1>Hello</h1>
+              <a className="result-items">
+                <h6 className="image-username">{results.title}</h6>
                 <div className="image-wrapper">
-                  <img className="image" src={result.previewURL} alt={result.user}/>
+                  <img className="image"/>
                 </div>
               </a>
-            );
-          })}
+              </div>
         </div>
-      );
-    }
+      )
   };
 	render() {
     //const { query } = this.state;

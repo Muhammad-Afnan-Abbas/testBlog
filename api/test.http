@@ -1,4 +1,4 @@
-GET  http://localhost:3001/blog?60a93ab554b3111fb0e9e1d7
+GET  http://localhost:3001/user/60aa9ac9f897874658851e16
 Content-Type: application/json
 
 # {

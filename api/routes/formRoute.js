@@ -3,6 +3,7 @@ const multer = require("multer");
 var app = express();
 const bcrypt = require("bcrypt");
 var cors = require("cors");
+var util = require('util')
 const router = express.Router();
 const Form = require("../models/formModel");
 const ContactForm = require("../models/contactModel");
@@ -93,19 +94,19 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   //next();
   // console.log(newForm)
 });
-router.put("/update/:id", async (req, res) => {
-  console.log(req.body);
-  const blog = await Form.findById(
-    req.params.id,
-    {
-      title: req.body.title,
-      content: req.body.content,
-      file: req.body.file,
-    },
-    { new: true }
-  );
-  res.send(blog);
-});
+// router.put("/update/:id", async (req, res) => {
+//   console.log(req.body);
+//   const blog = await Form.findById(
+//     req.params.id,
+//     {
+//       title: req.body.title,
+//       content: req.body.content,
+//       file: req.body.file,
+//     },
+//     { new: true }
+//   );
+//   res.send(blog);
+// });
 
 router.route("/edit").put(upload.single("file"), async (req, res) => {
   ////console.log(req.body, req.files);return false;
@@ -148,11 +149,30 @@ router.delete("/blog/:id", async (req, res) => {
   res.send(newform);
 });
 
+
+router.put("/update/:id", async (req, res) => {
+  console.log("edit id", req.params.id);
+  const title = req.body.title;
+  const content = req.body.content;
+  const file = req.body.file;
+  const newform = await Form.findByIdAndUpdate(req.params.id, {title:title, content:content, file:file});
+  if (!newform)
+    return res.status(404).send("The product with the given ID was not found.");
+  res.send(newform);
+});
+
 router.get("/seller/:id", async (req, res) => {
   const products = await Form.find({ username: req.params.id })
     .select("-__v")
     .sort("title");
   res.send(products);
+});
+
+router.get("/user/:id", async (req, res) => {
+  console.log('hehehe',req.params.id)
+  const products = await signedUpUser.find({_id: req.params.id}).exec()
+  console.log(products)
+ // res.send(products);
 });
 
 router.route("/contactUs").post(async (req, res, next) => {
@@ -238,6 +258,15 @@ router.route("/signin").post(async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+router.get("/search", async (req, res) => {
+  console.log("Query", req.query.q)
+  const que = req.query.q
+  //const results = Form.find(word => new RegExp (`${req.query}`).test(word))
+  const results = await Form.find({ title: que })
+  res.send(util.inspect(results));
+  console.log("res",util.inspect(results))
+})
 
 router.route("/logout").get(async (req, res) => {
   const options = {

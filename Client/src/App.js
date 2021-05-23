@@ -22,6 +22,7 @@ import Login from "./Components/Auth/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import EditBlog from "./Components/Auth/editProfile";
 import AllProducts from "./Components/Dashboard/products/allProducts";
+import Search from "./Components/navBar/search";
 
 function App() {
   if (localStorage.jwtToken) {
@@ -53,7 +54,7 @@ function App() {
           <Route path="/food" />
           <Route path="/features" />
           <Route path="/tag-archive" />
-          <Route path="/aboutus" />
+          <Route path="/aboutus" component={Search} />
           <Route path="/home" component={HomeTest} />{" "}
           <Redirect from="/" exact to="/home" />
           <Route path="/blog-detail/:id" component={BlogDetail} />{" "}
