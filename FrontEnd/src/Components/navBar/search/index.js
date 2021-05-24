@@ -40,7 +40,6 @@ class Search extends  React.Component {
         const objs = res.data
         console.log("search",objs)
         const obj = JSON.parse(objs)
-        
         console.log("json", obj)
         //res.json();
         this.setState({
@@ -88,16 +87,15 @@ class Search extends  React.Component {
    renderSearchResults = () => {
     const {results} = this.state;
     if (this.state.results.length > 0) {
-      console.log("hahahha",results)
+      console.log("checking Response",results)
     }
     //const resultnew = JSON.parse(this.state.results)
     // console.log("Query Results",results)
-    let temp = results?.map((data, index) => {
       return (
-        <div className="results-container" key={index}>
+        <div className="results-container">
           <div>
           <a className="result-items">
-            <h6 className="image-username">{data.title}</h6>
+            <h6 className="image-username"></h6>
             <div className="image-wrapper">
               <img className="image"/>
             </div>
@@ -105,8 +103,6 @@ class Search extends  React.Component {
           </div>
         </div>
       )
-    });
-    return temp;
   }
 
 	render() {

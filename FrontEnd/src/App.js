@@ -49,11 +49,6 @@ function App() {
             {" "}
           </Route>{" "}
           {/* <Route path="/home" component={Home} /> */}{" "}
-          <Route path="/technology" component={Home} />{" "}
-          <Route path="/lifestyle" />
-          <Route path="/food" />
-          <Route path="/features" />
-          <Route path="/tag-archive" />
           <Route path="/aboutus" component={Search} />
           <Route path="/home" component={HomeTest} />{" "}
           <Redirect from="/" exact to="/home" />
