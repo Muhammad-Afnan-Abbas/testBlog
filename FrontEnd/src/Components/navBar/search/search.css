@@ -1,0 +1,20 @@
+/*Container*/
+.search-label {
+	position: relative;
+}
+input {
+	width: 90%;
+  height: 70%;
+	padding: 3px;
+	font-size: 14px;
+	font-style: italic;
+	color: rgb(31, 31, 31);
+	box-sizing: border-box;
+	outline: none;
+}
+.result-items{
+	color: black;
+}
+.image-username{
+	color: black;
+}
